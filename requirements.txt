@@ -1,0 +1,5 @@
+aiohttp
+pydantic
+pydantic-xml[lxml]
+fastapi
+uvicorn
