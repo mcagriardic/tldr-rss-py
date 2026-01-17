@@ -11,12 +11,33 @@ Python alternative to [Bullrich/tldr-rss](https://github.com/Bullrich/tldr-rss) 
 - `/feed/devops.rss`
 - `/feed/data.rss`
 
-## Docker
+## Self-Hosting
+
+### Docker
 
 ```bash
 docker build -t tldr-rss .
 docker run -p 8000:8000 tldr-rss
 ```
+
+### Docker Compose (with Karakeep)
+
+```yaml
+services:
+  tldr-rss:
+    build: .
+    restart: unless-stopped
+
+  karakeep:
+    image: karakeep/karakeep:latest
+    ports:
+      - "3000:3000"
+    environment:
+      # Add your Karakeep config here
+    restart: unless-stopped
+```
+
+Then add feeds in Karakeep using `http://tldr-rss:8000/feed/tech.rss` etc.
 
 ## Local Development
 
